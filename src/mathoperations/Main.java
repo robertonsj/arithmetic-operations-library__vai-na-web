@@ -31,6 +31,14 @@ public class Main {
 				calcularVolumeCone(5, 8));
 		System.out.println("Volume do cilindro: " + MathOperations.
 				calcularVolumeCilindro(3.1, 10));
+		
+		
+		//Capital inicial = 500.00
+		// taxa de juros mensal = 3%
+		// período = 1 ano e 6 meses = 18 meses
+		System.out.println(MathOperations.calcularJurosSimples(500, 3, 18));
+		System.out.println("Montante final dos juros compostos: R$" + 
+				MathOperations.calcularJurosComposto(500, 3, 18));
 	}
 
 }

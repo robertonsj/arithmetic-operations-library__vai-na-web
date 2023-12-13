@@ -4,11 +4,16 @@ import java.text.DecimalFormat;
 
 public class MathOperations {
 	
-	static DecimalFormat format = new DecimalFormat(".###");
+	static DecimalFormat format = new DecimalFormat(".##");
 	
 
 	public static double Sum(double ...numeros) {
 		double resultado = 0;
+		for(double numero : numeros) resultado += numero;
+		return resultado;
+	}
+	public static long Sum(long ...numeros) {
+		long resultado = 0;
 		for(double numero : numeros) resultado += numero;
 		return resultado;
 	}
@@ -17,13 +22,36 @@ public class MathOperations {
 		for(double numero : numeros) resultado -= numero;
 		return resultado;
 	}
+	public static long Subtract(long ...numeros) {
+		long resultado = 0;
+		for(double numero : numeros) resultado -= numero;
+		return resultado;
+	}
+	
 	public static double Multiply(double ...numeros) {
 		double resultado = 1;
 		for(double numero : numeros) resultado *= numero;
 		return resultado;
 	}
+	public static long Multiply(long ...numeros) {
+		long resultado = 1;
+		for(double numero : numeros) resultado *= numero;
+		return resultado;
+	}
+	
 	public static double Divide(double ...numeros) {
 		double resultado = numeros[0];
+		for(int i = 1; i < numeros.length; i++ ) {
+			if(numeros[i] == 0) {
+				throw new ArithmeticException("Cannot divide by zero");
+			}
+			resultado /= numeros[i];				
+			
+		}
+		return resultado;
+	}
+	public static long Divide(long ...numeros) {
+		long resultado = numeros[0];
 		for(int i = 1; i < numeros.length; i++ ) {
 			if(numeros[i] == 0) {
 				throw new ArithmeticException("Cannot divide by zero");
@@ -70,7 +98,20 @@ public class MathOperations {
 		return format.format(Math.PI * Math.pow(raioBase, 2) * altura);
 	}
 	
-
+	//Juros simples e compostos
+	//C - capital inicial, i - taxa de juros mensal, t - período de transação
+	public static String calcularJurosSimples(double C, double i, int t) {
+		double jurosSimples = C * i/100 * t;
+		double montanteFinal = C + jurosSimples;
+		return "Juros simples: R$" + jurosSimples + "\n"
+				+ "Montante final do juros simples: R$" + montanteFinal;
+	}
+	
+	public static String calcularJurosComposto(double C, double i, int t) {
+		double montanteFinal = C * Math.pow((1 + i/100), t);
+		return format.format(montanteFinal);
+	}
+	
 	
 
 }
